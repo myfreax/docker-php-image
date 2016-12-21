@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+## defined mod array
+modules=(
+		eio ev swoole uv-beta
+)
+## install mod with pecl
+ modInstallCmd=pecl" install "${modules[*]}
+ echo "eval '"$modInstallCmd"'" 
+ eval $modInstallCmd
+
+## create mod ini file
+enableModules=()
+for module in "${modules[@]}"
+do
+	moduleName=${module//-beta/}
+	enableModules+=($moduleName)
+   	echo extension"="$moduleName.so > /etc/php/7.0/mods-available/$moduleName.ini
+done
+
+enableModCmd=phpenmod" "${enableModules[*]}
+echo $enableModCmd
+## enable mod
+eval $enableModCmd
