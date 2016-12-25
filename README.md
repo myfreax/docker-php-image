@@ -14,7 +14,7 @@
 docker pull huangyanxiong2012/docker-php-image
 docker run --name some-app huangyanxiong2012/docker-php-image 
 ```
-### Using a custom MySQL configuration file
+### Using a custom  configuration file
  
 ```bash
 docker run --name some-app -v /docker/php/etc/php.ini:/etc/php/7.0/fpm/php.ini  huangyanxiong2012/docker-php-image
