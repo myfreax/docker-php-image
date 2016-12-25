@@ -9,8 +9,23 @@
 
 ## Usage
 
+### Start a PHP-FPM server instance
 ```bash
 docker pull huangyanxiong2012/docker-php-image
+docker run --name some-app huangyanxiong2012/docker-php-image 
+```
+### Using a custom MySQL configuration file
+ 
+```bash
+docker run --name some-app -v /docker/php/etc/php.ini:/etc/php/7.0/fpm/php.ini  huangyanxiong2012/docker-php-image
+```
+in docker-compose.yml
+```yaml
+    volumes:
+      - ./docker/php/etc/php.ini:/etc/php/7.0/fpm/php.ini
+      - ./docker/php/etc/php-fpm.conf:/etc/php/7.0/fpm/php-fpm.conf
+      - ./docker/php/etc/php-fpm.d/www.conf:/etc/php/7.0/fpm/pool.d/www.conf
+      - ./docker/php/logs/:/var/log/php/
 ```
 
 ## Extension
